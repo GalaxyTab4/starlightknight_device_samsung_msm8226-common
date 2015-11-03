@@ -1,4 +1,4 @@
-ifneq ($(filter find7 find7op,$(TARGET_DEVICE)),)
+ifneq ($(filter matisse,$(TARGET_DEVICE)),)
     include $(all-subdir-makefiles)
 
 # Symlink firmware from /persist

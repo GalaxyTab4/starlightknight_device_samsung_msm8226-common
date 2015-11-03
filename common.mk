@@ -1,17 +1,18 @@
-# This file includes all definitions that apply to ALL oppo msm8974 devices,
+# This file includes all definitions that apply to ALL samsung msm8974 devices,
 #
 # Everything in this directory will become public
 
-DEVICE_PACKAGE_OVERLAYS := device/oppo/msm8974-common/overlay
+DEVICE_PACKAGE_OVERLAYS := device/samsung/msm8226-common/overlay
 
-COMMON_PATH := device/oppo/msm8974-common
+COMMON_PATH := device/samsung/msm8226-common
 
 # This device is xhdpi.  However the platform doesn't
 # currently contain all of the bitmaps at xhdpi density so
 # we do this little trick to fall back to the hdpi version
 # if the xhdpi doesn't exist.
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
+PRODUCT_AAPT_CONFIG := large
+PRODUCT_AAPT_PREF_CONFIG := mdpi
 
 PRODUCT_PACKAGES += \
     charger_res_images
@@ -34,11 +35,6 @@ PRODUCT_PACKAGES += \
 #PRODUCT_PACKAGES += \
 #    OmniTorch
 
-# Ramdisk
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/init.oppo.usb.rc:root/init.oppo.usb.rc \
-    $(COMMON_PATH)/configs/ueventd.qcom.rc:root/ueventd.qcom.rc
-
 # Config files for touch and input
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
@@ -49,7 +45,6 @@ PRODUCT_COPY_FILES += \
 # Media config files
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/media_codecs.xml:system/etc/media_codecs.xml \
-    $(COMMON_PATH)/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     $(COMMON_PATH)/media_profiles.xml:system/etc/media_profiles.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
@@ -67,7 +62,7 @@ PRODUCT_COPY_FILES += \
 
 #thermal-engine
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/thermal-engine-8974.conf:system/etc/thermal-engine-8974.conf
+    $(COMMON_PATH)/configs/thermal-engine-8226.conf:system/etc/thermal-engine-8974.conf
 
 # Wifi config
 PRODUCT_COPY_FILES += \
@@ -97,24 +92,24 @@ PRODUCT_COPY_FILES += \
 
 # Hardware modules to build
 PRODUCT_PACKAGES += \
-    hwcomposer.msm8974 \
-    gralloc.msm8974 \
-    copybit.msm8974 \
-    memtrack.msm8974 \
-    audio.primary.msm8974 \
-    audio_policy.msm8974 \
+    hwcomposer.msm8226 \
+    gralloc.msm8226 \
+    copybit.msm8226 \
+    memtrack.msm8226 \
+    audio.primary.msm8226 \
+    audio_policy.msm8226 \
     lights.qcom \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
-    camera-wrapper.msm8974 \
+    camera-wrapper.msm8226 \
     libaudio-resampler \
     audiod \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
-    power.msm8974 \
-    keystore.msm8974
+    power.msm8226 \
+    keystore.msm8226
 
 PRODUCT_PACKAGES += \
     libmm-omxcore \
@@ -134,7 +129,6 @@ PRODUCT_PACKAGES += \
 
 # wifi
 PRODUCT_PACKAGES += \
-    mac-update \
     wcnss_service \
     libwpa_client \
     hostapd \
@@ -145,9 +139,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
 
-# Device settings
-PRODUCT_PACKAGES += \
-    Find7Parts
 
 # NFC feature files
 PRODUCT_COPY_FILES += \
@@ -158,8 +149,6 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/gps/gps.conf:system/etc/gps.conf \
     $(COMMON_PATH)/gps/izat.conf:system/etc/izat.conf
 
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/power_profiles.xml:system/etc/power_profiles.xml
 
 # Properties
 
@@ -205,9 +194,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.egl.recordable.rgba8888=1
 
-# Oppo-specific
+# samsung-specific
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.oppo.version=US \
+    ro.samsung.version=US \
     ro.xxversion=V1.0 \
     ro.bootversion=V1.1
 
@@ -248,9 +237,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1
 
 # sensors
-# Sensor configuration from Oppo
+# Sensor configuration from samsung
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/sensor/sap.conf:system/etc/sap.conf
 
 # Inherit from proprietary blobs
-$(call inherit-product, vendor/oppo/msm8974-common/msm8974-common-vendor.mk)
+$(call inherit-product, vendor/samsung/msm8226-common/msm8226-common-vendor.mk)

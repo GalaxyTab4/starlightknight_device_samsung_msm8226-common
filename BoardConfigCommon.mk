@@ -1,12 +1,12 @@
 # inherit from the proprietary version
--include vendor/oppo/find7a/BoardConfigVendor.mk
+-include vendor/samsung/matisse/BoardConfigVendor.mk
 
-COMMON_PATH := device/oppo/msm8974-common
+COMMON_PATH := device/samsung/msm8226-common
 
 TARGET_NO_BOOTLOADER := true
 
 # Platform
-TARGET_BOARD_PLATFORM := msm8974
+TARGET_BOARD_PLATFORM := msm8226
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno330
 
 # Architecture
